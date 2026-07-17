@@ -1,12 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
-@import "tailwindcss";
 
-@theme {
-  --font-lexend: "Lexend", sans-serif;
-  --font-prata: "Prata", serif;
-}
+@tailwind base;
 
 body {
-  @apply font-lexend;
+  @apply font-Lexend;
 }
+
+@layer base {
+  body {
+    @apply m-0 bg-l4 text-g1;
+  }
+
+  * {
+    @apply box-border;
+  }
+}
+
+.input {
+  @apply w-full bg-l4 border border-l2 rounded-lg py-2 px-3.5 2xl:px-5 text-14 2xl:text-16 font-normal text-g1 block outline-none;
+}
+
+.label {
+  @apply text-12 md:text-14 text-g1 font-semibold block mb-1;
+}
+
+.btn_primary {
+  @apply w-full flex items-center justify-center space-x-1 whitespace-nowrap py-1.5 lg:py-2 px-3 lg:px-4 2xl:px-6 bg-primary border border-primary rounded-lg text-12 lg:text-14 2xl:text-16 font-semibold text-white hover:bg-white hover:border-primary hover:text-primary;
+}
+
+.btn_secondary {
+  @apply w-full whitespace-nowrap inline-block py-1.5 lg:py-2 px-3 lg:px-4 2xl:px-6 bg-white border border-primary rounded-lg text-12 lg:text-14 2xl:text-16 font-semibold text-primary hover:bg-primary hover:border-primary hover:text-white;
+}
+
+.excel_btn {
+  @apply w-full bg-white border border-l2 rounded-[10px] py-1.5 lg:py-2 px-3.5 2xl:px-5 text-14 2xl:text-16 font-medium text-g1 block outline-none;
+}
+
+.error {
+  @apply text-[10px] 2xl:text-12 absolute bottom-0 left-2.5 xl:left-3.5 2xl:left-5 bg-white text-red;
+}
+
+
+@tailwind components;
+@tailwind utilities;
