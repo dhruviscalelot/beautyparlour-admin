@@ -15,14 +15,14 @@ const AllRoutes = () => {
                 <Route path="/" element={<Login />}>
 
 
-                    <Route element={<RequireAuth />}>
-                        <Route element={<Layout />}>
-                            <Route path='/' element={<Navigate to="/dashboard" />} />
+                    {/* <Route element={<RequireAuth />}> */}
+                    <Route element={<Layout />}>
+                        {/* <Route path='/' element={<Navigate to="/dashboard" />} /> */}
 
-                            {/* Dashboard */}
-                            <Route path='dashboard' index element={<Dashboard/>}/>
-                        </Route>
+                        {/* Dashboard */}
+                        <Route path='/dashboard' element={<Dashboard />} />
                     </Route>
+                    {/* </Route> */}
 
                 </Route>
             </Routes>

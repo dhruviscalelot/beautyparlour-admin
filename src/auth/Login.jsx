@@ -6,6 +6,11 @@ import { EMAIL_VALIDATION, PASSWORD_VALIDATION } from '../common/ErrorMessageCom
 import { assets } from '../assets/Images/assets'
 import { Eye, EyeOff } from "lucide-react";
 
+const STATIC_LOGIN = {
+  email: 'admin@beautyparlour.com',
+  password: 'Admin@123',
+}
+
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
   const navigate = useNavigate()
@@ -21,16 +26,35 @@ const Login = () => {
   })
 
   const handleSubmit = (values, { setSubmitting }) => {
-    localStorage.setItem('adminEmail', values.email)
+    if (values.email === STATIC_LOGIN.email && values.password === STATIC_LOGIN.password) {
+      // localStorage.setItem('accessToken', 'static-admin-token')
+      // localStorage.setItem('adminEmail', values.email)
+      navigate('/dashboard')
+    } else {
+      alert('Invalid email or password')
+    }
+
+    // API login code add here when backend is ready.
+    // try {
+    //   setSubmitting(true)
+    //   const response = await dispatch(login(values))
+    //   if (response?.IsSuccess) {
+    //     localStorage.setItem('accessToken', response.Data.token)
+    //     navigate('/dashboard')
+    //   }
+    // } catch (error) {
+    //   console.log('error', error)
+    // }
+
     setSubmitting(false)
   }
 
-  useEffect(() => {
-    const token = localStorage.getItem('accessToken')
-    if (token) {
-      navigate('/dashboard')
-    }
-  }, [navigate])
+  // useEffect(() => {
+  //   const token = localStorage.getItem('accessToken')
+  //   if (token) {
+  //     navigate('/dashboard')
+  //   }
+  // }, [navigate])
 
   return (
     <div className="w-full min-h-screen flex relative py-6 lg:py-8 2xl:py-10 px-5 2xl:px-6 font-Lexend bg-l3 overflow-hidden">
