@@ -1,12 +1,51 @@
 export const MainMenu = [
     {
-        displayname: "Inquiry",
-        route: "inquiry",
+        displayname: "Dashboard",
+        route: "/dashboard",
         isOpen: false,
-        view: false,
+        view: true,
+        icon: "icon-dashboard",
+    },
+    {
+        displayname: "Inquiry",
+        route: "/inquiry",
+        isOpen: false,
+        view: true,
         icon: "icon-inquiry",
     },
     {
-
-    }
+        displayname: "Appointments",
+        route: "/appointments",
+        isOpen: false,
+        view: true,
+        icon: "icon-appointments",
+    },
+    {
+        displayname: "Services",
+        route: "/services",
+        isOpen: false,
+        view: true,
+        icon: "icon-services",
+    },
+    {
+        displayname: "Customers",
+        route: "/customers",
+        isOpen: false,
+        view: true,
+        icon: "icon-customers",
+    },
+    {
+        displayname: "Staff",
+        route: "/staff",
+        isOpen: false,
+        view: true,
+        icon: "icon-staff",
+    },
+    {
+        displayname: "Settings",
+        route: "/settings",
+        isOpen: false,
+        view: true,
+        icon: "icon-settings",
+    },
 ]

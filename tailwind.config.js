@@ -31,6 +31,7 @@ export default {
         l2: '#ead6d9',
         g1: '#2f2527',
         g2: '#4f4447',
+        g3: '#6d5f63',
         g7: '#75676b',
         red: '#FE5969',
       },
@@ -70,4 +71,3 @@ export default {
   },
   plugins: [],
 }
-

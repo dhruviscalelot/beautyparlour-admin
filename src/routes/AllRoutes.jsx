@@ -12,19 +12,14 @@ const AllRoutes = () => {
     return (
         <>
             <Routes>
-                <Route path="/" element={<Login />}>
+                <Route path="/" element={<Login />} />
 
-
-                    {/* <Route element={<RequireAuth />}> */}
-                    <Route element={<Layout />}>
-                        {/* <Route path='/' element={<Navigate to="/dashboard" />} /> */}
-
-                        {/* Dashboard */}
-                        <Route path='/dashboard' element={<Dashboard />} />
-                    </Route>
-                    {/* </Route> */}
-
+                {/* <Route element={<RequireAuth />}> */}
+                <Route element={<Layout />}>
+                    {/* Dashboard */}
+                    <Route path='/dashboard' element={<Dashboard />} />
                 </Route>
+                {/* </Route> */}
             </Routes>
         </>
     )
