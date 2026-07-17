@@ -1,15 +1,4 @@
 import { NavLink } from 'react-router-dom'
-import { CalendarDays, ClipboardList, LayoutDashboard, Scissors, Settings, Sparkles, Users } from 'lucide-react'
-
-const menuIcons = {
-    'icon-dashboard': LayoutDashboard,
-    'icon-inquiry': ClipboardList,
-    'icon-appointments': CalendarDays,
-    'icon-services': Scissors,
-    'icon-customers': Users,
-    'icon-staff': Sparkles,
-    'icon-settings': Settings,
-}
 
 function Sidebar({ menuList = [], isOpen = false, onClose }) {
     return (
@@ -29,7 +18,6 @@ function Sidebar({ menuList = [], isOpen = false, onClose }) {
 
                 <nav className="sidebar_menu">
                     {menuList.filter((item) => item.view).map((item) => {
-                        const Icon = menuIcons[item.icon] || ClipboardList
 
                         return (
                             <NavLink
@@ -39,7 +27,7 @@ function Sidebar({ menuList = [], isOpen = false, onClose }) {
                                 className={({ isActive }) => `sidebar_link ${isActive ? 'sidebar_link_active' : ''}`}
                             >
                                 <span className="sidebar_icon">
-                                    <Icon size={18} />
+                                    <item.icon size={18} />
                                 </span>
                                 <span>{item.displayname}</span>
                             </NavLink>

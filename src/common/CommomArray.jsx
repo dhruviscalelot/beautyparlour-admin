@@ -1,51 +1,53 @@
+import { CalendarDays, ClipboardList, LayoutDashboard, Scissors, Settings, Sparkles, Users } from 'lucide-react'
+
 export const MainMenu = [
     {
         displayname: "Dashboard",
         route: "/dashboard",
         isOpen: false,
         view: true,
-        icon: "icon-dashboard",
+        icon: CalendarDays,
     },
     {
         displayname: "Inquiry",
         route: "/inquiry",
         isOpen: false,
         view: true,
-        icon: "icon-inquiry",
+        icon: ClipboardList,
     },
     {
         displayname: "Appointments",
         route: "/appointments",
         isOpen: false,
         view: true,
-        icon: "icon-appointments",
+        icon: LayoutDashboard
     },
     {
         displayname: "Services",
         route: "/services",
         isOpen: false,
         view: true,
-        icon: "icon-services",
+        icon: Scissors,
     },
     {
         displayname: "Customers",
         route: "/customers",
         isOpen: false,
         view: true,
-        icon: "icon-customers",
+        icon: Settings,
     },
     {
         displayname: "Staff",
         route: "/staff",
         isOpen: false,
         view: true,
-        icon: "icon-staff",
+        icon: Sparkles,
     },
     {
         displayname: "Settings",
         route: "/settings",
         isOpen: false,
         view: true,
-        icon: "icon-settings",
+        icon: Users,
     },
 ]

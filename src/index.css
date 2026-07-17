@@ -41,6 +41,8 @@ body {
   @apply text-[10px] 2xl:text-12 absolute bottom-0 left-2.5 xl:left-3.5 2xl:left-5 bg-white text-red;
 }
 
+
+/* start sidebar class */
 .admin_layout {
   @apply min-h-screen bg-l4 flex font-Lexend;
 }
@@ -102,6 +104,7 @@ body {
     @apply ml-0 pt-16;
   }
 }
+/* end sidebar class */
 
 
 @tailwind components;
