@@ -3,11 +3,11 @@ import {setPageName} from "../../Store/Action/Auth/Auth_Action";
 import { useDispatch } from 'react-redux';
 
 
-const Dashboard = () => {
+const OurServices = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setPageName("Dashboard"))
+    dispatch(setPageName("Our Services"))
   },[]);
 
 
@@ -17,4 +17,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default OurServices

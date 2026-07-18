@@ -1,8 +1,12 @@
 import { Bell, ChevronLeft, ChevronRight, LogOut, Menu, UserRound,UserPen  } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
+import {usePageName} from "../Store/Selectors/Auth/Auth_Selectors";
 
-function Header({ title = 'Dashboard', isOpen = true, onMenuClick }) {
+
+
+function Header({ isOpen = true, onMenuClick }) {
     const navigate = useNavigate()
+    const title = usePageName();
     // const adminEmail = localStorage.getItem('adminEmail') || 'admin@beautyparlour.com'
 
     const handleLogout = () => {

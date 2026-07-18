@@ -4,11 +4,10 @@ import Login from '../auth/Login';
 import Layout from '../components/Layout';
 import Dashboard from "../pages/Dashboard/Dashboard"
 import RequireAuth from "../routes/RequireAuth"
+import OurServices from '../pages/OurServices/OurServices';
 
 
 const AllRoutes = () => {
-
-
     return (
         <>
             <Routes>
@@ -18,6 +17,9 @@ const AllRoutes = () => {
                 <Route element={<Layout />}>
                     {/* Dashboard */}
                     <Route path='/dashboard' element={<Dashboard />} />
+
+                    {/* Our Services */}
+                    <Route path='/our-services' element={<OurServices />} />
                 </Route>
                 {/* </Route> */}
             </Routes>
