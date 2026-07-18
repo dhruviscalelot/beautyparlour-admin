@@ -1,16 +1,18 @@
 import { NavLink } from 'react-router-dom'
 
-function Sidebar({ menuList = [], isOpen = false, onClose }) {
+function Sidebar({ MainMenu = [], isOpen = false, isExpanded = true, onClose }) {
+    const menuList = [...MainMenu]
+
     return (
         <>
             {isOpen && <div className="sidebar_overlay" onClick={onClose}></div>}
 
-            <aside className={`sidebar_wrap ${isOpen ? 'sidebar_open' : ''}`}>
+            <aside className={`sidebar_wrap ${isOpen ? 'sidebar_open' : ''} ${isExpanded ? '' : 'sidebar_collapsed'}`}>
                 <div className="sidebar_logo">
                     <div className="sidebar_logo_icon">
                         <span className="font-Prata text-24 2xl:text-28 text-primary leading-none">B</span>
                     </div>
-                    <div className="ml-3">
+                    <div className="sidebar_logo_text ml-3">
                         <h2 className="font-Prata text-20 2xl:text-24 text-g1 leading-tight">Beauty</h2>
                         <p className="text-12 text-g7 uppercase tracking-[0.16em]">Admin Panel</p>
                     </div>
@@ -29,7 +31,7 @@ function Sidebar({ menuList = [], isOpen = false, onClose }) {
                                 <span className="sidebar_icon">
                                     <item.icon size={18} />
                                 </span>
-                                <span>{item.displayname}</span>
+                                <span className="sidebar_text">{item.displayname}</span>
                             </NavLink>
                         )
                     })}
