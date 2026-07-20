@@ -5,6 +5,7 @@ import Layout from '../components/Layout';
 import Dashboard from "../pages/Dashboard/Dashboard"
 import RequireAuth from "../routes/RequireAuth"
 import OurServices from '../pages/OurServices/OurServices';
+import Gallery from '../pages/Gallery/Gallery';
 
 
 const AllRoutes = () => {
@@ -20,6 +21,9 @@ const AllRoutes = () => {
 
                     {/* Our Services */}
                     <Route path='/our-services' element={<OurServices />} />
+
+                    {/* Gallery */}
+                    <Route path='/gallery' element={<Gallery />} />
                 </Route>
                 {/* </Route> */}
             </Routes>
