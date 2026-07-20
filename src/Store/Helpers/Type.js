@@ -79,3 +79,9 @@ export const SIDEBAR_SYNC = {
   TOGGLE_DESKTOP: "TOGGLE_DESKTOP",
   TOGGLE_MOBILE: "TOGGLE_MOBILE",
 };
+
+export const SERVICES = createFeatureActions("SERVICES", [
+  "SAVE",
+  "DELETE",
+  "LIST",
+]);
