@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { setPageName } from "../../Store/Action/Auth/Auth_Action";
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CustomTable from "../../components/CustomTable";
 import { servicesData } from '../../data/service.js';
 import { Pencil, Trash2, Search, Plus } from "lucide-react";
@@ -9,6 +9,7 @@ import { Pencil, Trash2, Search, Plus } from "lucide-react";
 
 const OurServices = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const columns = [
     {
@@ -25,7 +26,7 @@ const OurServices = () => {
     { key: "description", label: "Description", renderCell: (key, row) => <div className="max-w-xs truncate">{row?.description || "-"}</div> },
     {
       key: "action", label: "Action", renderCell: (key, row) => <div className="flex items-center space-x-3">
-        <span className="text-[18px] lg:text-[20px] xl:text-[24px] text-g1 cursor-pointer" ><Pencil size={18} /></span>
+        <span className="text-[18px] lg:text-[20px] xl:text-[24px] text-g1 cursor-pointer" onClick={() => navigate(`./edit/${row.id}`,)} ><Pencil size={18} /></span>
         <span className="icon-trash text-[18px] lg:text-[20px] xl:text-[24px] text-red cursor-pointer" ><Trash2 size={18} /></span>
       </div>
     }

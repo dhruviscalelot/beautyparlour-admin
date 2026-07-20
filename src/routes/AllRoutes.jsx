@@ -6,6 +6,8 @@ import Dashboard from "../pages/Dashboard/Dashboard"
 import RequireAuth from "../routes/RequireAuth"
 import OurServices from '../pages/OurServices/OurServices';
 import Gallery from '../pages/Gallery/Gallery';
+import AddEditOurServices from '../pages/OurServices/AddEditOurServices';
+import AddEditGallery from '../pages/Gallery/AddEditGallery';
 
 
 const AllRoutes = () => {
@@ -16,14 +18,20 @@ const AllRoutes = () => {
 
                 {/* <Route element={<RequireAuth />}> */}
                 <Route element={<Layout />}>
+
                     {/* Dashboard */}
                     <Route path='/dashboard' element={<Dashboard />} />
 
                     {/* Our Services */}
                     <Route path='/our-services' element={<OurServices />} />
+                    <Route path='/our-services/create' element={<AddEditOurServices />} />
+                    <Route path='/our-services/edit/:id' element={<AddEditOurServices />} />
+
 
                     {/* Gallery */}
                     <Route path='/gallery' element={<Gallery />} />
+
+
                 </Route>
                 {/* </Route> */}
             </Routes>

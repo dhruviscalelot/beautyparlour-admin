@@ -5,10 +5,12 @@ import { Link } from 'react-router-dom';
 import CustomTable from "../../components/CustomTable";
 import { galleryData } from '../../data/gallery.js';
 import { Pencil, Trash2, Search, Plus } from "lucide-react";
+import AddEditGallery from "../../pages/Gallery/AddEditGallery.jsx"
 
 
 const Gallery = () => {
     const dispatch = useDispatch();
+    const [showAddEdit, setShowAddEdit] = useState({ isOpen: false, resData: {} });
 
     const columns = [
         { key: "registerDate", label: "Date", renderCell: (key, row) => row?.createdAt || "-" },
@@ -29,7 +31,7 @@ const Gallery = () => {
         { key: "type", label: "Type", renderCell: (key, row) => <div className="max-w-xs truncate">{row?.type || "-"}</div> },
         {
             key: "action", label: "Action", renderCell: (key, row) => <div className="flex items-center space-x-3">
-                <span className="text-[18px] lg:text-[20px] xl:text-[24px] text-g1 cursor-pointer" ><Pencil size={18} /></span>
+                <span className="text-[18px] lg:text-[20px] xl:text-[24px] text-g1 cursor-pointer" onClick={() => setShowAddEdit({ isOpen: true, resData: row })} ><Pencil size={18} /></span>
                 <span className="icon-trash text-[18px] lg:text-[20px] xl:text-[24px] text-red cursor-pointer" ><Trash2 size={18} /></span>
             </div>
         }
@@ -59,7 +61,7 @@ const Gallery = () => {
 
                 <div className="flex items-center justify-between">
                     <h6 className="text-20 font-semibold text-primary">All Gallery Images</h6>
-                    <Link to="./create" className='btn_primary w-auto '><Plus size={20} />
+                    <Link onClick={() => setShowAddEdit({ isOpen: true, resData: {} })} className='btn_primary w-auto '><Plus size={20} />
                         <span>Upload Image</span>
                     </Link>
                 </div>
@@ -82,6 +84,9 @@ const Gallery = () => {
                     handlePageChange={handlePageChange}
                 />
             </div>
+            {showAddEdit.isOpen && <AddEditGallery Data={showAddEdit.resData} onClose={(refresh) => { setShowAddEdit({ isOpen: false, resData: {} }); if (refresh); }} />}
+
+
         </>
     )
 }
