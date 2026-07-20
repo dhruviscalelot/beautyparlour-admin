@@ -5,11 +5,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import CustomTable from "../../components/CustomTable";
 import { servicesData } from '../../data/service.js';
 import { Pencil, Trash2, Search, Plus } from "lucide-react";
+import CommonDialog from '../../common/CommonDialog.jsx';
 
 
 const OurServices = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [DeletePopup, setDeletePopup] = useState({ isOpen: false, resData: {}, });
+  const [commonData, setCommonData] = useState({});
 
   const columns = [
     {
@@ -27,13 +30,14 @@ const OurServices = () => {
     {
       key: "action", label: "Action", renderCell: (key, row) => <div className="flex items-center space-x-3">
         <span className="text-[18px] lg:text-[20px] xl:text-[24px] text-g1 cursor-pointer" onClick={() => navigate(`./edit/${row.id}`,)} ><Pencil size={18} /></span>
-        <span className="icon-trash text-[18px] lg:text-[20px] xl:text-[24px] text-red cursor-pointer" ><Trash2 size={18} /></span>
+        <span className="icon-trash text-[18px] lg:text-[20px] xl:text-[24px] text-red cursor-pointer" onClick={() => DeleteOpenDialog(row)} ><Trash2 size={18} /></span>
       </div>
     }
   ]
 
   // Pagination state — 10 items per page
   const [pagination, setPagination] = useState({ page: 1, limit: 10 });
+
 
   // Slice static data for current page
   const paginatedData = servicesData.slice(
@@ -44,10 +48,50 @@ const OurServices = () => {
   const handlePageChange = (newPage, newLimit) => {
     setPagination({ page: newPage, limit: newLimit });
   };
+  //end
+
 
   useEffect(() => {
     dispatch(setPageName("Our Services"))
   }, []);
+
+
+
+  //Delete Open Dialog
+  const DeleteOpenDialog = (rowData) => {
+    setCommonData({
+      title: "Delete Service",
+      description: "Are You Sure You Want To Delete This Service? ",
+      buttonNames: { firstBtn: "Cancel", secondBtn: "Delete" },
+    });
+    setDeletePopup({
+      isOpen: true,
+      resData: rowData,
+    });
+  };
+
+
+  //Delete Close Dialog
+  const deleteCloseDialog = async (closeEvent) => {
+    if (closeEvent) {
+      if (DeletePopup?.resData) {
+        let resData = DeletePopup?.resData;
+        const payload = { service_id: resData?._id || "", };
+        // const response = await dispatch(deleteService(payload));
+        if (response?.IsSuccess) {
+          toast.success(response?.Message);
+          // GetServicesData();
+        }
+        setDeletePopup({
+          isOpen: false,
+          resData: {},
+        });
+      }
+    } else {
+      setDeletePopup({ isOpen: false, resData: {}, });
+    }
+  };
+
 
 
   return (
@@ -79,6 +123,7 @@ const OurServices = () => {
           handlePageChange={handlePageChange}
         />
       </div>
+      {DeletePopup.isOpen && <CommonDialog CommonData={commonData} closeCommonDialog={deleteCloseDialog} />}
     </>
   )
 }

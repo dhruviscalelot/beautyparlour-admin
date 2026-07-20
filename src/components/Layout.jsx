@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import Header from './Header'
-import { MainMenu } from '../common/CommomArray'
+import { MainMenu } from '../common/CommonArray'
 import { useToggleSideBar } from '../Store/Selectors/Sidebar/Sidebar_Selectors'
 
 const Layout = () => {
