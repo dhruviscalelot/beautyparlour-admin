@@ -1,12 +1,19 @@
-import { Bell, ChevronLeft, ChevronRight, LogOut, Menu, UserRound,UserPen  } from 'lucide-react'
+import { Bell, ChevronLeft, ChevronRight, LogOut, Menu, UserRound, UserPen } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
-import {usePageName} from "../Store/Selectors/Auth/Auth_Selectors";
+import { useDispatch } from 'react-redux'
+import { usePageName } from '../Store/Selectors/Auth/Auth_Selectors'
+import { useToggleSideBar, useToggleSideBarMobile } from '../Store/Selectors/Sidebar/Sidebar_Selectors'
+import { setSidebarOpen, setSidebarOpenMobile } from '../Store/Action/Sidebar/Sidebar_Action'
 
-
-
-function Header({ isOpen = true, onMenuClick }) {
+function Header() {
+    const dispatch = useDispatch()
     const navigate = useNavigate()
-    const title = usePageName();
+
+    // Redux state
+    const isOpen = useToggleSideBar()
+    const isOpenMobile = useToggleSideBarMobile()
+    const title = usePageName()
+
     // const adminEmail = localStorage.getItem('adminEmail') || 'admin@beautyparlour.com'
 
     const handleLogout = () => {
@@ -19,11 +26,17 @@ function Header({ isOpen = true, onMenuClick }) {
         <header
             className={`h-[70px] bg-white z-40 flex items-center justify-between px-4 md:px-8 transition-all duration-300 ease-in-out`}
         >
-            {/* left side - togle button & title */}
+            {/* left side - toggle button & title */}
             <div className="flex items-center space-x-3 md:space-x-4 flex-1">
                 <button
                     type="button"
-                    onClick={onMenuClick}
+                    onClick={() => {
+                        if (window.innerWidth < 1024) {
+                            dispatch(setSidebarOpenMobile(true))
+                        } else {
+                            dispatch(setSidebarOpen(!isOpen))
+                        }
+                    }}
                     className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-primary/80 transition-all shadow-sm shrink-0 active:scale-95"
                     aria-label="Toggle sidebar"
                 >
@@ -55,7 +68,7 @@ function Header({ isOpen = true, onMenuClick }) {
                         className="w-9 h-9 lg:w-10 lg:h-10 xl:w-11 xl:h-11 rounded-full bg-white border border-l2 flex items-center justify-center cursor-pointer text-g7 hover:text-primary hover:border-primary transition-all"
                         aria-label="Notifications"
                     >
-                        <Bell size={20}  fill="currentColor" />
+                        <Bell size={20} fill="currentColor" />
                     </button>
                 </div>
 
@@ -80,7 +93,7 @@ function Header({ isOpen = true, onMenuClick }) {
                             onClick={handleLogout}
                             className="w-full flex items-center px-3 py-2 rounded-lg text-12 md:text-14 font-medium text-g1 hover:bg-l3 transition-colors"
                         >
-                            <UserPen  size={17} className="mr-2" />
+                            <UserPen size={17} className="mr-2" />
                             <span>Edit Profile</span>
                         </button>
 

@@ -1,15 +1,28 @@
 import { NavLink } from 'react-router-dom'
-import {useToggleSideBar,useToggleSideBarMobile} from "../Store/Selectors/Sidebar/Sidebar_Selectors";
+import { useDispatch } from 'react-redux'
+import { useToggleSideBar, useToggleSideBarMobile } from '../Store/Selectors/Sidebar/Sidebar_Selectors'
+import { setSidebarOpenMobile } from '../Store/Action/Sidebar/Sidebar_Action'
 
-function Sidebar({ MainMenu = [], isOpen = false, isExpanded = true, onClose }) {
+function Sidebar({ MainMenu = [] }) {
+    const dispatch = useDispatch()
+
+    // Redux state
+    const isExpanded = useToggleSideBar()      // desktop: true = expanded, false = collapsed
+    const isOpenMobile = useToggleSideBarMobile() // mobile: true = open, false = hidden
+
     const menuList = [...MainMenu]
-    
 
     return (
         <>
-            {isOpen && <div className="sidebar_overlay" onClick={onClose}></div>}
+            {/* Mobile overlay — closes sidebar on backdrop click */}
+            {isOpenMobile && (
+                <div
+                    className="sidebar_overlay"
+                    onClick={() => dispatch(setSidebarOpenMobile(false))}
+                ></div>
+            )}
 
-            <aside className={`sidebar_wrap ${isOpen ? 'sidebar_open' : ''} ${isExpanded ? '' : 'sidebar_collapsed'}`}>
+            <aside className={`sidebar_wrap ${isOpenMobile ? 'sidebar_open' : ''} ${isExpanded ? '' : 'sidebar_collapsed'}`}>
                 <div className="sidebar_logo">
                     <div className="sidebar_logo_icon">
                         <span className="font-Prata text-24 2xl:text-28 text-primary leading-none">B</span>
@@ -22,12 +35,11 @@ function Sidebar({ MainMenu = [], isOpen = false, isExpanded = true, onClose }) 
 
                 <nav className="sidebar_menu">
                     {menuList.filter((item) => item.view).map((item) => {
-
                         return (
                             <NavLink
                                 key={item.displayname}
                                 to={item.route}
-                                onClick={onClose}
+                                onClick={() => dispatch(setSidebarOpenMobile(false))}
                                 className={({ isActive }) => `sidebar_link ${isActive ? 'sidebar_link_active' : ''}`}
                             >
                                 <span className="sidebar_icon">

@@ -6,7 +6,7 @@ export const setSidebarReducer = (state = true,action) => {
 }
 
 
-export const setSidebarMobileReducer = (state = true,action) => {
+export const setSidebarMobileReducer = (state = false,action) => {
     if(action.type === "TOGGLE_MOBILE" )
         return action.payload;
     return state;
