@@ -84,7 +84,7 @@ body {
 }
 
 .layout_content {
-  @apply flex-1 min-h-screen ml-[260px] 2xl:ml-[300px]  transition-all duration-300;
+  @apply flex-1 min-h-screen ml-[260px] 2xl:ml-[300px] transition-all duration-300;
 }
 
 .layout_content_collapsed {
@@ -127,7 +127,25 @@ body {
     @apply mr-0;
   }
 }
+
 /* end sidebar and header class */
+
+
+
+/* Table css start  */
+.custom_table table tr th {
+  @apply text-14 font-semibold text-g1 px-2 py-1.5 bg-l3 whitespace-nowrap border-r border-l2 text-left;
+}
+
+.custom_table table tr td {
+  @apply text-14 font-normal text-g7 px-2 py-1.5 whitespace-nowrap bg-white border-collapse border border-l3;
+}
+
+.custom_table table tr:nth-child(even) td {
+  @apply bg-l4;
+}
+
+/* Table css end  */
 
 
 @tailwind components;
