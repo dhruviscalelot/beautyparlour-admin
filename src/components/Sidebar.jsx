@@ -25,11 +25,11 @@ function Sidebar({ MainMenu = [] }) {
             <aside className={`sidebar_wrap ${isOpenMobile ? 'sidebar_open' : ''} ${isExpanded ? '' : 'sidebar_collapsed'}`}>
                 <div className="sidebar_logo">
                     <div className="sidebar_logo_icon">
-                        <span className="font-Prata text-24 2xl:text-28 text-primary leading-none">B</span>
+                        <span className="font-Prata text-24 2xl:text-28 text-primary leading-none">G</span>
                     </div>
                     <div className="sidebar_logo_text ml-3">
-                        <h2 className="font-Prata text-20 2xl:text-24 text-g1 leading-tight">Beauty</h2>
-                        <p className="text-12 text-g7 uppercase tracking-[0.16em]">Admin Panel</p>
+                        <h2 className="font-Prata text-20 2xl:text-24 text-g1 leading-tight">Glow & Grace</h2>
+                        {/* <p className="text-12 text-g7 uppercase tracking-[0.16em]">Admin Panel</p> */}
                     </div>
                 </div>
 

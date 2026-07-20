@@ -41,6 +41,10 @@ body {
   @apply text-[10px] 2xl:text-12 absolute bottom-0 left-2.5 xl:left-3.5 2xl:left-5 bg-white text-red;
 }
 
+.main_shadow {
+  box-shadow: 0px 2px 16px 10px rgba(12, 26, 36, 0.05);
+}
+
 
 /* start sidebar and header class */
 .admin_layout {
@@ -129,6 +133,102 @@ body {
 }
 
 /* end sidebar and header class */
+
+
+/* Dashboard css start */
+.dashboard_hero {
+  @apply bg-primary rounded-xl lg:rounded-2xl p-4 md:p-5 lg:p-6 2xl:p-8 flex flex-col lg:flex-row lg:items-center lg:justify-between overflow-hidden;
+  box-shadow: 0px 2px 16px 10px rgba(12, 26, 36, 0.05);
+}
+
+.dashboard_badge {
+  @apply inline-flex items-center space-x-2 rounded-full bg-white/15 text-white text-12 md:text-14 font-semibold px-3 py-1.5 mb-4;
+}
+
+.dashboard_title {
+  @apply font-Prata text-28 md:text-36 2xl:text-48 text-white leading-tight mb-3;
+}
+
+.dashboard_text {
+  @apply text-14 md:text-16 2xl:text-18 text-white/80 max-w-2xl;
+}
+
+.dashboard_hero_panel {
+  @apply mt-5 lg:mt-0 w-full lg:w-auto lg:min-w-[260px] rounded-2xl bg-white/15 border border-white/20 p-4 md:p-5;
+}
+
+.dashboard_stats {
+  @apply flex flex-wrap -mx-1.5 lg:-mx-2.5 2xl:-mx-3.5;
+}
+
+.dashboard_stat_col {
+  @apply w-full xs:w-1/2 xl:w-1/4 p-1.5 lg:p-2.5 2xl:p-3.5 flex items-center;
+}
+
+.dashboard_stat_card {
+  @apply bg-white rounded-xl lg:rounded-2xl p-4 md:p-5 min-h-[132px] w-full flex flex-col justify-between;
+  box-shadow: 0px 2px 16px 10px rgba(12, 26, 36, 0.05);
+}
+
+.dashboard_stat_icon {
+  @apply w-11 h-11 2xl:w-12 2xl:h-12 rounded-xl bg-l3 text-primary flex items-center justify-center mb-3;
+}
+
+.dashboard_stat_title {
+  @apply block text-12 md:text-14 font-medium text-g7 mb-1;
+}
+
+.dashboard_stat_value {
+  @apply block font-Prata text-26 md:text-30 2xl:text-36 text-g1 leading-tight;
+}
+
+.dashboard_stat_info {
+  @apply text-12 md:text-14 text-g7 mt-1 truncate;
+}
+
+.dashboard_card {
+  @apply bg-white rounded-xl lg:rounded-2xl p-3 lg:p-4 xl:p-5;
+  box-shadow: 0px 2px 16px 10px rgba(12, 26, 36, 0.05);
+}
+
+.dashboard_card_head {
+  @apply flex items-start justify-between mb-4 lg:mb-5;
+}
+
+.dashboard_card_title {
+  @apply text-18 md:text-20 font-semibold text-primary;
+}
+
+.dashboard_card_text {
+  @apply text-12 md:text-14 text-g7 mt-1;
+}
+
+.dashboard_appointment,
+.dashboard_service {
+  @apply flex items-center rounded-xl border border-l2 bg-l4 p-3;
+}
+
+.dashboard_time_icon,
+.dashboard_service_icon {
+  @apply w-10 h-10 rounded-xl bg-white text-primary flex items-center justify-center mr-3 shrink-0;
+}
+
+.dashboard_status {
+  @apply inline-block mt-1 rounded-full px-2 py-0.5 text-[10px] md:text-12 font-semibold;
+}
+
+.dashboard_status_success {
+  @apply bg-primary-light text-primary-dark;
+}
+
+.dashboard_status_pending {
+  @apply bg-l2 text-g2;
+}
+
+.dashboard_rank {
+  @apply ml-3 text-12 md:text-14 font-bold text-primary shrink-0;
+}
+/* Dashboard css end */
 
 
 
