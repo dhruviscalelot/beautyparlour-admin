@@ -53,21 +53,21 @@ const Dashboard = () => {
   return (
     <>
       <div className="space-y-4 lg:space-y-6 xl:space-y-8">
-        
-        <div className="dashboard_stats">
+
+        <div className="flex flex-wrap -mx-1.5 lg:-mx-2.5 2xl:-mx-3.5">
           {statsData.map((item) => {
             const Icon = item.icon;
 
             return (
-              <div className="dashboard_stat_col" key={item.title}>
-                <div className="dashboard_stat_card">
-                  <div className="dashboard_stat_icon">
+              <div className="w-full xs:w-1/2 xl:w-1/4 p-1.5 lg:p-2.5 2xl:p-3.5 flex items-center" key={item.title}>
+                <div className="bg-white rounded-xl lg:rounded-2xl p-4 md:p-5 min-h-[132px] w-full flex flex-col justify-between main_shadow">
+                  <div className="w-11 h-11 2xl:w-12 2xl:h-12 rounded-xl bg-l3 text-primary flex items-center justify-center mb-3">
                     <Icon size={22} />
                   </div>
                   <div className="min-w-0">
-                    <span className="dashboard_stat_title">{item.title}</span>
-                    <strong className="dashboard_stat_value">{item.value}</strong>
-                    <p className="dashboard_stat_info">{item.info}</p>
+                    <span className="block text-12 md:text-14 font-medium text-g7 mb-1">{item.title}</span>
+                    <strong className="block font-Prata text-26 md:text-30 2xl:text-36 text-g1 leading-tight">{item.value}</strong>
+                    <p className="text-12 md:text-14 text-g7 mt-1 truncate">{item.info}</p>
                   </div>
                 </div>
               </div>
@@ -77,19 +77,19 @@ const Dashboard = () => {
 
         <div className="flex flex-wrap items-start -mx-1.5 lg:-mx-2.5 2xl:-mx-3.5">
           <div className="w-full xl:w-7/12 p-1.5 lg:p-2.5 2xl:p-3.5">
-            <div className="dashboard_card">
-              <div className="dashboard_card_head">
+            <div className="bg-white rounded-xl lg:rounded-2xl p-3 lg:p-4 xl:p-5 main_shadow">
+              <div className="flex items-start justify-between mb-4 lg:mb-5">
                 <div>
-                  <h2 className="dashboard_card_title">Upcoming Appointments</h2>
-                  <p className="dashboard_card_text">Today&apos;s latest booking schedule</p>
+                  <h2 className="text-18 md:text-20 font-semibold text-primary">Upcoming Appointments</h2>
+                  <p className="text-12 md:text-14 text-g7 mt-1">Today&apos;s latest booking schedule</p>
                 </div>
                 <Link to="/dashboard" className="btn_secondary w-auto">View All</Link>
               </div>
 
               <div className="space-y-3">
                 {upcomingAppointments.map((item) => (
-                  <div className="dashboard_appointment" key={`${item.name}-${item.time}`}>
-                    <div className="dashboard_time_icon">
+                  <div className="flex items-center rounded-xl border border-l2 bg-l4 p-3" key={`${item.name}-${item.time}`}>
+                    <div className="w-10 h-10 rounded-xl bg-white text-primary flex items-center justify-center mr-3 shrink-0">
                       <Clock size={18} />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -98,7 +98,7 @@ const Dashboard = () => {
                     </div>
                     <div className="text-right shrink-0">
                       <span className="text-12 md:text-14 font-semibold text-g1 block">{item.time}</span>
-                      <span className={`dashboard_status ${item.status === 'Confirmed' ? 'dashboard_status_success' : 'dashboard_status_pending'}`}>
+                      <span className={`inline-block mt-1 rounded-full px-2 py-0.5 text-[10px] md:text-12 font-semibold ${item.status === 'Confirmed' ? 'bg-primary-light text-primary-dark' : 'bg-l2 text-g2'}`}>
                         {item.status}
                       </span>
                     </div>
@@ -109,11 +109,11 @@ const Dashboard = () => {
           </div>
 
           <div className="w-full xl:w-5/12 p-1.5 lg:p-2.5 2xl:p-3.5">
-            <div className="dashboard_card">
-              <div className="dashboard_card_head">
+            <div className="bg-white rounded-xl lg:rounded-2xl p-3 lg:p-4 xl:p-5 main_shadow">
+              <div className="flex items-start justify-between mb-4 lg:mb-5">
                 <div>
-                  <h2 className="dashboard_card_title">Popular Services</h2>
-                  <p className="dashboard_card_text">Most requested salon services</p>
+                  <h2 className="text-18 md:text-20 font-semibold text-primary">Popular Services</h2>
+                  <p className="text-12 md:text-14 text-g7 mt-1">Most requested salon services</p>
                 </div>
                 <Link to="/our-services" className="btn_secondary w-auto">Manage</Link>
               </div>
@@ -123,15 +123,15 @@ const Dashboard = () => {
                   const Icon = item.icon;
 
                   return (
-                    <div className="dashboard_service" key={item.id}>
-                      <div className="dashboard_service_icon">
+                    <div className="flex items-center rounded-xl border border-l2 bg-l4 p-3" key={item.id}>
+                      <div className="w-10 h-10 rounded-xl bg-white text-primary flex items-center justify-center mr-3 shrink-0">
                         <Icon size={18} />
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="text-14 md:text-16 font-semibold text-g1 truncate">{item.title}</h3>
                         <p className="text-12 md:text-14 text-g7 truncate">{item.description}</p>
                       </div>
-                      <span className="dashboard_rank">#{index + 1}</span>
+                      <span className="ml-3 text-12 md:text-14 font-bold text-primary shrink-0">#{index + 1}</span>
                     </div>
                   )
                 })}
