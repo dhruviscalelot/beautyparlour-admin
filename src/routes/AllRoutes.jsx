@@ -7,7 +7,8 @@ import RequireAuth from "../routes/RequireAuth"
 import OurServices from '../pages/OurServices/OurServices';
 import Gallery from '../pages/Gallery/Gallery';
 import AddEditOurServices from '../pages/OurServices/AddEditOurServices';
-import AddEditGallery from '../pages/Gallery/AddEditGallery';
+import Testimonials from '../pages/Testimonials/Testimonials';
+import AddEditTestimonials from '../pages/Testimonials/AddEditTestimonials';
 
 
 const AllRoutes = () => {
@@ -27,9 +28,13 @@ const AllRoutes = () => {
                     <Route path='/our-services/create' element={<AddEditOurServices />} />
                     <Route path='/our-services/edit/:id' element={<AddEditOurServices />} />
 
-
                     {/* Gallery */}
                     <Route path='/gallery' element={<Gallery />} />
+
+                    {/* Reviews */}
+                    <Route path='/testimonials' element={<Testimonials />} />
+                    <Route path='/testimonials/create' element={<AddEditTestimonials />} />
+                    <Route path='/testimonials/edit/:id' element={<AddEditTestimonials />} />
 
 
                 </Route>

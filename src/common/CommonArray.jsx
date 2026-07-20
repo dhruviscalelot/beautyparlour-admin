@@ -1,4 +1,4 @@
-import { CalendarDays, ClipboardList, LayoutDashboard, Scissors, Settings, Sparkles, Users , Images,} from 'lucide-react'
+import { CalendarDays, ClipboardList, LayoutDashboard, Scissors, Settings, Sparkles, Users, Images, Star } from 'lucide-react'
 
 export const MainMenu = [
     {
@@ -35,6 +35,13 @@ export const MainMenu = [
         isOpen: false,
         view: true,
         icon: Images,
+    },
+    {
+        displayname: "Testimonials",
+        route: "/testimonials",
+        isOpen: false,
+        view: true,
+        icon: Star,
     },
     // {
     //     displayname: "Customers",
