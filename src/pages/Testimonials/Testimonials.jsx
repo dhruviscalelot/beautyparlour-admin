@@ -15,16 +15,6 @@ const Testimonials = () => {
     const [commonData, setCommonData] = useState({});
 
     const columns = [
-        // {
-        //     key: "icon", label: "Icon", renderCell: (key, row) => {
-        //         const IconComponent = row?.icon;
-        //         return IconComponent
-        //             ? <span className="flex items-center justify-center w-[40px] h-[40px] rounded-lg bg-primary/10">
-        //                 <IconComponent size={22} className="text-primary" />
-        //             </span>
-        //             : "-";
-        //     }
-        // },
         { key: "name", label: "Name", renderCell: (key, row) => row?.name || "-" },
         { key: "rating", label: "Rating", renderCell: (key, row) => row?.rating || "-" },
         { key: "quote", label: "Quote", renderCell: (key, row) => <div className="max-w-xs truncate">{row?.quote || "-"}</div> },
