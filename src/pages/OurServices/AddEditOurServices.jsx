@@ -14,11 +14,14 @@ const AddEditOurServices = () => {
     const location = useLocation()
     const { id } = useParams()
 
+    
     //start static add now for the fetch the data edit time
     // const { serviceData } = location.state || {}
     const serviceData = servicesData.find(
         (item) => String(item.id) === String(id)
     );
+
+    const ExistingIcon = serviceData?.icon;
     //end static add now for the fetch the data edit time
 
     const fileInputRef = React.useRef(null)
@@ -117,7 +120,7 @@ const AddEditOurServices = () => {
                                         className="input relative border border-dashed flex items-center justify-between cursor-pointer"
                                         onClick={() => fileInputRef.current?.click()}
                                     >
-                                        {!values.icon ? (
+                                        {!values.image ? (
                                             <div className="text-center flex items-center justify-center space-x-2 w-full">
                                                 <span className="text-[20px] 2xl:text-[24px] font-medium text-g1"><ImagePlus size={18} /></span>
                                                 <span className="text-12 md:text-14 2xl:text-16 text-g7">Upload Icon</span>
@@ -125,14 +128,19 @@ const AddEditOurServices = () => {
                                         ) : (
                                             <>
                                                 <span className='text-12 md:text-14 2xl:text-16 text-g1 truncate text-ellipsis overflow-hidden'>
-                                                    {values.icon instanceof File ? values.icon.name : values.icon.split("/").pop()}
+                                                    {/* {values.icon instanceof File ? values.icon.name : values.icon.split("/").pop()} */}
+                                                    {values.image instanceof File ? values.image.name : "Current Icon"}
                                                 </span>
                                                 <div className="flex items-center space-x-2">
                                                     <span
                                                         className="icon-eye text-[18px] lg:text-[20px] xl:text-[24px] text-g1 cursor-pointer"
                                                         onClick={(e) => {
                                                             e.stopPropagation();
-                                                            const url = values.icon instanceof File ? URL.createObjectURL(values.icon) : import.meta.env.VITE_API_URL + values.icon;
+                                                            // const url = values.icon instanceof File ? URL.createObjectURL(values.icon) : import.meta.env.VITE_API_URL + values.icon;
+                                                            const url =
+                                                                values.image instanceof File
+                                                                    ? URL.createObjectURL(values.image)
+                                                                    : values.image;
                                                             window.open(url, '_blank');
                                                         }}
                                                     ></span>
@@ -140,23 +148,49 @@ const AddEditOurServices = () => {
                                                         className="icon-trash text-[18px] lg:text-[20px] xl:text-[24px] text-red cursor-pointer"
                                                         onClick={(e) => {
                                                             e.stopPropagation();
-                                                            setFieldValue("icon", "");
+                                                            setFieldValue("image", "");
                                                         }}
                                                     ></span>
                                                 </div>
                                             </>
                                         )}
                                     </div>
-                                    <ErrorMessage name="icon" component="span" className="error" />
-
-                                    {values.icon && (
+                                    <ErrorMessage name="image" component="span" className="error" />
+                                    {/* 
+                                    {values.image && (
                                         <div className="mt-4">
                                             <p className="text-12 text-g7 mb-2">Preview:</p>
                                             <img
-                                                src={values.icon instanceof File ? URL.createObjectURL(values.icon) : import.meta.env.VITE_API_URL + values.icon}
+                                                // src={values.icon instanceof File ? URL.createObjectURL(values.icon) : import.meta.env.VITE_API_URL + values.icon}
+                                                src={
+                                                    values.image instanceof File
+                                                        ? URL.createObjectURL(values.image)
+                                                        : values.image
+                                                }
                                                 alt="Preview"
                                                 className="w-32 h-32 object-cover rounded-lg border border-l2 shadow-sm"
                                             />
+                                        </div>
+                                    )} */}
+                                    {values.image && (
+                                        <div className="mt-4">
+                                            <p className="text-12 text-g7 mb-2">Preview:</p>
+
+                                            {values.image instanceof File ? (
+                                                <img
+                                                    src={URL.createObjectURL(values.image)}
+                                                    alt="Preview"
+                                                    className="w-32 h-32 object-cover rounded-lg border border-l2 shadow-sm"
+                                                />
+                                            ) : ExistingIcon ? (
+                                                <div className="w-32 h-32 flex items-center justify-center rounded-lg border border-l2 bg-primary/10 shadow-sm">
+                                                    <ExistingIcon
+                                                        size={48}
+                                                        className="text-primary"
+                                                        strokeWidth={1.8}
+                                                    />
+                                                </div>
+                                            ) : null}
                                         </div>
                                     )}
                                 </div>
