@@ -6,11 +6,14 @@ import CustomTable from "../../components/CustomTable";
 import { galleryData } from '../../data/gallery.js';
 import { Pencil, Trash2, Search, Plus } from "lucide-react";
 import AddEditGallery from "../../pages/Gallery/AddEditGallery.jsx"
+import CommonDialog from '../../common/CommonDialog.jsx';
 
 
 const Gallery = () => {
     const dispatch = useDispatch();
     const [showAddEdit, setShowAddEdit] = useState({ isOpen: false, resData: {} });
+    const [DeletePopup, setDeletePopup] = useState({ isOpen: false, resData: {}, });
+    const [commonData, setCommonData] = useState({});
 
     const columns = [
         { key: "registerDate", label: "Date", renderCell: (key, row) => row?.createdAt || "-" },
@@ -32,7 +35,7 @@ const Gallery = () => {
         {
             key: "action", label: "Action", renderCell: (key, row) => <div className="flex items-center space-x-3">
                 <span className="text-[18px] lg:text-[20px] xl:text-[24px] text-g1 cursor-pointer" onClick={() => setShowAddEdit({ isOpen: true, resData: row })} ><Pencil size={18} /></span>
-                <span className="icon-trash text-[18px] lg:text-[20px] xl:text-[24px] text-red cursor-pointer" ><Trash2 size={18} /></span>
+                <span className="icon-trash text-[18px] lg:text-[20px] xl:text-[24px] text-red cursor-pointer" onClick={() => DeleteOpenDialog(row)} ><Trash2 size={18} /></span>
             </div>
         }
     ]
@@ -53,6 +56,43 @@ const Gallery = () => {
     useEffect(() => {
         dispatch(setPageName("Gallery"))
     }, []);
+
+
+
+    //Delete Open Dialog
+    const DeleteOpenDialog = (rowData) => {
+        setCommonData({
+            title: "Delete Service",
+            description: "Are You Sure You Want To Delete This Service? ",
+            buttonNames: { firstBtn: "Cancel", secondBtn: "Delete" },
+        });
+        setDeletePopup({
+            isOpen: true,
+            resData: rowData,
+        });
+    };
+
+
+    //Delete Close Dialog
+    const deleteCloseDialog = async (closeEvent) => {
+        if (closeEvent) {
+            if (DeletePopup?.resData) {
+                let resData = DeletePopup?.resData;
+                const payload = { service_id: resData?._id || "", };
+                // const response = await dispatch(deleteService(payload));
+                if (response?.IsSuccess) {
+                    toast.success(response?.Message);
+                    // GetServicesData();
+                }
+                setDeletePopup({
+                    isOpen: false,
+                    resData: {},
+                });
+            }
+        } else {
+            setDeletePopup({ isOpen: false, resData: {}, });
+        }
+    };
 
 
     return (
@@ -85,6 +125,9 @@ const Gallery = () => {
                 />
             </div>
             {showAddEdit.isOpen && <AddEditGallery Data={showAddEdit.resData} onClose={(refresh) => { setShowAddEdit({ isOpen: false, resData: {} }); if (refresh); }} />}
+            {DeletePopup.isOpen && <CommonDialog CommonData={commonData} closeCommonDialog={deleteCloseDialog} />}
+
+
 
 
         </>
