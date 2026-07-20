@@ -15,7 +15,8 @@ const Layout = () => {
     <div className={`admin_layout side_bar ${isOpen ? '' : 'active'}`} id="open">
       <Sidebar MainMenu={mainMenu} />
 
-      <div className={`layout_content main anim ${isOpen ? '' : 'layout_content_collapsed'}`}>
+      <div className={`layout_content  h-screen overflow-y-auto main anim ${isOpen ? '' : 'layout_content_collapsed'}`}>
+        {/* <div className="w-full lg:w-[calc(100%-256px)] xl:w-[calc(100%-280px)] h-screen overflow-y-auto main anim"> */}
         <Header />
         <div className="py-5 px-6">
           <Outlet />
