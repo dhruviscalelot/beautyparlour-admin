@@ -6,15 +6,13 @@ import { EMAIL_VALIDATION, PASSWORD_VALIDATION } from '../common/ErrorMessageCom
 import { assets } from '../assets/Images/assets'
 import { Eye, EyeOff } from "lucide-react";
 import toast from 'react-hot-toast'
-
-const STATIC_LOGIN = {
-  email: 'admin@beautyparlour.com',
-  password: 'admin@123',
-}
+import { login } from "../Store/Action/Auth/Auth_Action";
+import { useDispatch } from 'react-redux'
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
   const navigate = useNavigate()
+  const dispatch = useDispatch();
 
   const initialValues = {
     email: '',
@@ -26,37 +24,30 @@ const Login = () => {
     password: Yup.string().required(PASSWORD_VALIDATION),
   })
 
-  const handleSubmit = (values, { setSubmitting }) => {
-    if (values.email === STATIC_LOGIN.email && values.password === STATIC_LOGIN.password) {
-      // localStorage.setItem('accessToken', 'static-admin-token')
-      // localStorage.setItem('adminEmail', values.email)
-      toast.success("Admin logged in successfully!");
-      navigate('/dashboard')
-    } else {
-      alert('Invalid email or password')
+  const handleSubmit = async (values, { setSubmitting }) => {
+    try {
+      setSubmitting(true);
+      const response = await dispatch(login(values));
+      console.log("response login---", response);
+      if (response) {
+        toast.success(response.Message);
+        localStorage.setItem("accessToken", response.Data.token);
+        navigate('/dashboard')
+        setSubmitting(false);
+      }
     }
-
-    // API login code add here when backend is ready.
-    // try {
-    //   setSubmitting(true)
-    //   const response = await dispatch(login(values))
-    //   if (response?.IsSuccess) {
-    //     localStorage.setItem('accessToken', response.Data.token)
-    //     navigate('/dashboard')
-    //   }
-    // } catch (error) {
-    //   console.log('error', error)
-    // }
-
+    catch (error) {
+      console.log("error", error);
+    }
     setSubmitting(false)
   }
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem('accessToken')
-  //   if (token) {
-  //     navigate('/dashboard')
-  //   }
-  // }, [navigate])
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken')
+    if (token) {
+      navigate('/dashboard')
+    }
+  }, [])
 
   return (
     <div className="w-full min-h-screen flex relative py-6 lg:py-8 2xl:py-10 px-5 2xl:px-6 font-Lexend bg-l3 overflow-hidden">
@@ -72,7 +63,7 @@ const Login = () => {
               <div className="w-16 h-16 md:w-20 md:h-20 mb-5 rounded-2xl bg-l3 border border-l2 shadow-[0_16px_35px_rgba(183,110,121,0.22)] flex items-center justify-center">
                 <span className="font-Prata text-30 md:text-36 text-primary leading-none">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flower2 lucide-flower-2 h-7 w-7" aria-hidden="true"><path d="M12 5a3 3 0 1 1 3 3m-3-3a3 3 0 1 0-3 3m3-3v1M9 8a3 3 0 1 0 3 3M9 8h1m5 0a3 3 0 1 1-3 3m3-3h-1m-2 3v-1"></path><circle cx="12" cy="8" r="2"></circle><path d="M12 10v12"></path><path d="M12 22c4.2 0 7-1.667 7-5-4.2 0-7 1.667-7 5Z"></path><path d="M12 22c-4.2 0-7-1.667-7-5 4.2 0 7 1.667 7 5Z"></path></svg>
+                    strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-flower2 lucide-flower-2 h-7 w-7" aria-hidden="true"><path d="M12 5a3 3 0 1 1 3 3m-3-3a3 3 0 1 0-3 3m3-3v1M9 8a3 3 0 1 0 3 3M9 8h1m5 0a3 3 0 1 1-3 3m3-3h-1m-2 3v-1"></path><circle cx="12" cy="8" r="2"></circle><path d="M12 10v12"></path><path d="M12 22c4.2 0 7-1.667 7-5-4.2 0-7 1.667-7 5Z"></path><path d="M12 22c-4.2 0-7-1.667-7-5 4.2 0 7 1.667 7 5Z"></path></svg>
                 </span>
               </div>
               <h1 className="text-30 md:text-40 2xl:text-48 font-Prata text-g1 leading-tight mb-2">

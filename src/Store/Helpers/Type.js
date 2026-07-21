@@ -17,7 +17,7 @@ const createFeatureActions = (featureName, actions) => {
 // // Define actions for each module
 export const AUTH = createFeatureActions("AUTH", [
   "LOGIN",
-  "GET_PROFILE",
+  // "GET_PROFILE",
 ]);
 
 // export const UPLOADS = createFeatureActions("UPLOADS", [
@@ -69,7 +69,7 @@ export const AUTH = createFeatureActions("AUTH", [
 
 // Optional sync action types
 export const AUTH_SYNC = {
-//   LOGOUT: "LOGOUT",
+  LOGOUT: "LOGOUT",
 //   SET_VERIFY_EMAIL: "SET_VERIFY_EMAIL",
   SET_PAGE_NAME: "SET_PAGE_NAME",
 };

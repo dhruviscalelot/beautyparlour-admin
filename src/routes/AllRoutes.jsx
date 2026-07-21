@@ -17,28 +17,28 @@ const AllRoutes = () => {
             <Routes>
                 <Route path="/" element={<Login />} />
 
-                {/* <Route element={<RequireAuth />}> */}
-                <Route element={<Layout />}>
+                <Route element={<RequireAuth />}>
+                    <Route element={<Layout />}>
 
-                    {/* Dashboard */}
-                    <Route path='/dashboard' element={<Dashboard />} />
+                        {/* Dashboard */}
+                        <Route path='/dashboard' element={<Dashboard />} />
 
-                    {/* Our Services */}
-                    <Route path='/our-services' element={<OurServices />} />
-                    <Route path='/our-services/create' element={<AddEditOurServices />} />
-                    <Route path='/our-services/edit/:id' element={<AddEditOurServices />} />
+                        {/* Our Services */}
+                        <Route path='/our-services' element={<OurServices />} />
+                        <Route path='/our-services/create' element={<AddEditOurServices />} />
+                        <Route path='/our-services/edit/:id' element={<AddEditOurServices />} />
 
-                    {/* Gallery */}
-                    <Route path='/gallery' element={<Gallery />} />
+                        {/* Gallery */}
+                        <Route path='/gallery' element={<Gallery />} />
 
-                    {/* Reviews */}
-                    <Route path='/testimonials' element={<Testimonials />} />
-                    <Route path='/testimonials/create' element={<AddEditTestimonials />} />
-                    <Route path='/testimonials/edit/:id' element={<AddEditTestimonials />} />
+                        {/* Reviews */}
+                        <Route path='/testimonials' element={<Testimonials />} />
+                        <Route path='/testimonials/create' element={<AddEditTestimonials />} />
+                        <Route path='/testimonials/edit/:id' element={<AddEditTestimonials />} />
 
 
+                    </Route>
                 </Route>
-                {/* </Route> */}
             </Routes>
         </>
     )

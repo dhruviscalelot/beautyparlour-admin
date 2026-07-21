@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { X } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
-
+import {logoutUser} from "../Store/Action/Auth/Auth_Action"
 
 const LogOut = ({ onClose }) => {
 
@@ -12,9 +12,9 @@ const LogOut = ({ onClose }) => {
 
     const handleLogout = () => {
         try {
+            dispatch(logoutUser());
             toast.success("Admin Logout Sucessfully...!");
             location.reload();
-            navigate('/')
         }
         catch (error) {
             console.log(error);
