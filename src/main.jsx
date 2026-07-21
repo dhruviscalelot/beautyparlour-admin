@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
+import ErrorBoundary from './components/ErrorBoundary.jsx'
 import App from './App.jsx'
 import { BrowserRouter } from "react-router-dom"
 import { store, persistor } from './Store/store.js'
@@ -11,12 +12,14 @@ import "primereact/resources/themes/lara-light-cyan/theme.css";
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <PrimeReactProvider value={{ autoZIndex: true, zIndex: { overlay: 1000 } }}>
-          <App />
-        </PrimeReactProvider>
-      </PersistGate>
-    </Provider>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <PrimeReactProvider value={{ autoZIndex: true, zIndex: { overlay: 1000 } }}>
+            <App />
+          </PrimeReactProvider>
+        </PersistGate>
+      </Provider>
+    </ErrorBoundary>
   </BrowserRouter>
 )
